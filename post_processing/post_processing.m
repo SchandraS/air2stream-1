@@ -19,7 +19,7 @@ clear all
 clc
 
 %% modify the following lines according to your needs
-folder='Switzerland/output_8/';
+folder='Switzerland\output_8\';
 dt='1d';
 IDair='SIO';
 IDwat='2011';
@@ -75,10 +75,13 @@ for i=1:8
         ylabel(index);
     end
 end
-fig2 = gcf;
-set(fig2,PaperUnits = 'centimeters', PaperSize = [18 10], PaperPosition = [0 0 18 10]);
-print(fig2,'-r300','-dpdf', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.pdf']);
-print(fig2,'-r300','-dpng', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.png']);
+
+set(gcf,PaperUnits = 'centimeters', PaperSize = [18 10], PaperPosition = [0 0 18 10]);
+
+filepath = fullfile(folder, ['dottyplots_' runmode '_' index '_' IDair '_' IDwat '.pdf']);
+% these files are for saving current figure
+% print(gcf,'-r300','-dpdf', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.pdf']);
+% print(gcf,'-r300','-dpng', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.png']);
 
 %% 2. Series
 file_cal=['2_' runmode '_' index '_' IDair '_' IDwat '_cc_' dt '.out'];
@@ -96,8 +99,8 @@ T_val(T_val==-999)=NaN;
 date_cal=datenum([T_cal(:,1:3)]);
 date_val=datenum([T_val(:,1:3)]);
 
-RMSE_cal=sqrt(nanmean((T_cal(:,5)-T_cal(:,6)).^2));
-RMSE_val=sqrt(nanmean((T_val(:,5)-T_val(:,6)).^2));
+RMSE_cal=sqrt(mean((T_cal(:,5)-T_cal(:,6)).^2,"omitnan"));
+RMSE_val=sqrt(mean((T_val(:,5)-T_val(:,6)).^2, "omitnan"));
 
 figure
 title(['Validation, RMSE=' num2str(RMSE_cal) '°C'])

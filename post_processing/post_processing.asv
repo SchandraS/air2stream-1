@@ -19,7 +19,7 @@ clear all
 clc
 
 %% modify the following lines according to your needs
-folder='Switzerland/output_8/';
+folder='Switzerland\output_8\';
 dt='1d';
 IDair='SIO';
 IDwat='2011';
@@ -75,10 +75,16 @@ for i=1:8
         ylabel(index);
     end
 end
-fig2 = gcf
+fig2 = gcf;
 set(fig2,PaperUnits = 'centimeters', PaperSize = [18 10], PaperPosition = [0 0 18 10]);
+
+filepath = fullfile(folder, ['dottyplots_' runmode '_' index '_' IDair '_' IDwat '.pdf']);
+print(fig2, '-r300', '-dpdf', filepath);
+
+
+
 print(fig2,'-r300','-dpdf', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.pdf']);
-print(gcf,'-r300','-dpng', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.png']);
+print(fig2,'-r300','-dpng', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.png']);
 
 %% 2. Series
 file_cal=['2_' runmode '_' index '_' IDair '_' IDwat '_cc_' dt '.out'];
