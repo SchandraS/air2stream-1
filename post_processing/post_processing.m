@@ -112,7 +112,7 @@ plot(date_cal,T_cal(:,5),'.','color',blue);
 plot(date_cal,T_cal(:,6),'.','color',orange); 
 xlabel('Time');
 ylabel('Temperature [°C]');
-title(['Validation, RMSE=' num2str(RMSE_cal) '°C']);
+title(['Calibration, RMSE=' num2str(RMSE_cal) '°C']);
 legend('Air temperature','Observed water temperature','Simulated water temperature','location','SouthEast')
 datetick('x','mmm-yy')
 set(gcf,'paperunits','centimeters','papersize',[18 10],'paperposition',[0 0 18 10]);
