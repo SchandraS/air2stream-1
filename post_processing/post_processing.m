@@ -21,8 +21,8 @@ clc
 %% modify the following lines according to your needs
 folder='Switzerland\output_8\';
 dt='1d';
-IDair='SIO';
-IDwat='2011';
+IDair='DAV';
+IDwat='2327';
 index='RMS';
 runmode='PSO';
 toll=2;  % minimum efficiency index used in the dotty plots (maximum if index = RMS)
