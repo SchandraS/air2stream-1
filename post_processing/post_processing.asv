@@ -70,15 +70,15 @@ for i=1:8
     ylim(plot_limits);
     xlabel(['par' num2str(i)]);
     if strcmp(index,'RMS')==1
-        ylabel([index '[캜]'])
+        ylabel([index '[째C]'])
     else
         ylabel(index);
     end
 end
-fig2 = gcf;
+fig2 = gcf
 set(fig2,PaperUnits = 'centimeters', PaperSize = [18 10], PaperPosition = [0 0 18 10]);
 print(fig2,'-r300','-dpdf', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.pdf']);
-print(fig2,'-r300','-dpng', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.png']);
+print(gcf,'-r300','-dpng', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.png']);
 
 %% 2. Series
 file_cal=['2_' runmode '_' index '_' IDair '_' IDwat '_cc_' dt '.out'];
@@ -100,12 +100,12 @@ RMSE_cal=sqrt(nanmean((T_cal(:,5)-T_cal(:,6)).^2));
 RMSE_val=sqrt(nanmean((T_val(:,5)-T_val(:,6)).^2));
 
 figure
-title(['Validation, RMSE=' num2str(RMSE_cal) '캜'])
+title(['Validation, RMSE=' num2str(RMSE_cal) '째C'])
 plot(date_cal,T_cal(:,4),'.','color',light_blue); hold on
 plot(date_cal,T_cal(:,5),'.','color',blue); 
 plot(date_cal,T_cal(:,6),'.','color',orange); 
 xlabel('Time');
-ylabel('Temperature [캜]');
+ylabel('Temperature [째C]');
 legend('Air temperature','Observed water temperature','Simulated water temperature','location','SouthEast')
 datetick('x','mmm-yy')
 set(gcf,'paperunits','centimeters','papersize',[18 10],'paperposition',[0 0 18 10]);
@@ -113,12 +113,12 @@ print(gcf,'-r300','-dpdf', [folder 'calibration_' runmode '_' index '_' IDair '_
 print(gcf,'-r300','-dpng', [folder 'calibration_' runmode '_' index '_' IDair '_' IDwat '.png']);
 
 figure
-title(['Validation, RMSE=' num2str(RMSE_val) '캜'])
+title(['Validation, RMSE=' num2str(RMSE_val) '째C'])
 plot(date_val,T_val(:,4),'.','color',light_blue); hold on
 plot(date_val,T_val(:,5),'.','color',blue); 
 plot(date_val,T_val(:,6),'.','color',orange); 
 xlabel('Time');
-ylabel('Temperature [캜]');
+ylabel('Temperature [째C]');
 legend('Air temperature','Observed water temperature','Simulated water temperature','location','SouthEast')
 datetick('x','mmm-yy')
 set(gcf,'paperunits','centimeters','papersize',[18 10],'paperposition',[0 0 18 10]);
