@@ -78,10 +78,14 @@ end
 
 set(gcf,PaperUnits = 'centimeters', PaperSize = [18 10], PaperPosition = [0 0 18 10]);
 
-filepath = fullfile(folder, ['dottyplots_' runmode '_' index '_' IDair '_' IDwat '.pdf']);
-% these files are for saving current figure
+% these lines are for saving current figure
 % print(gcf,'-r300','-dpdf', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.pdf']);
 % print(gcf,'-r300','-dpng', [folder 'dottyplots_' runmode '_' index '_' IDair '_' IDwat '.png']);
+filepath_pdf = fullfile(folder, ['dottyplots_' runmode '_' index '_' IDair '_' IDwat '.pdf']);
+exportgraphics(gcf, filepath_pdf, 'ContentType', 'vector');
+filepath_png = fullfile(folder, ['dottyplots_' runmode '_' index '_' IDair '_' IDwat '.png']);
+exportgraphics(gcf, filepath_png, 'Resolution', 300);
+
 
 %% 2. Series
 file_cal=['2_' runmode '_' index '_' IDair '_' IDwat '_cc_' dt '.out'];
@@ -103,12 +107,12 @@ RMSE_cal=sqrt(mean((T_cal(:,5)-T_cal(:,6)).^2,"omitnan"));
 RMSE_val=sqrt(mean((T_val(:,5)-T_val(:,6)).^2, "omitnan"));
 
 figure
-title(['Validation, RMSE=' num2str(RMSE_cal) '°C'])
 plot(date_cal,T_cal(:,4),'.','color',light_blue); hold on
 plot(date_cal,T_cal(:,5),'.','color',blue); 
 plot(date_cal,T_cal(:,6),'.','color',orange); 
 xlabel('Time');
 ylabel('Temperature [°C]');
+title(['Validation, RMSE=' num2str(RMSE_cal) '°C']);
 legend('Air temperature','Observed water temperature','Simulated water temperature','location','SouthEast')
 datetick('x','mmm-yy')
 set(gcf,'paperunits','centimeters','papersize',[18 10],'paperposition',[0 0 18 10]);
@@ -116,12 +120,12 @@ print(gcf,'-r300','-dpdf', [folder 'calibration_' runmode '_' index '_' IDair '_
 print(gcf,'-r300','-dpng', [folder 'calibration_' runmode '_' index '_' IDair '_' IDwat '.png']);
 
 figure
-title(['Validation, RMSE=' num2str(RMSE_val) '°C'])
 plot(date_val,T_val(:,4),'.','color',light_blue); hold on
 plot(date_val,T_val(:,5),'.','color',blue); 
 plot(date_val,T_val(:,6),'.','color',orange); 
 xlabel('Time');
 ylabel('Temperature [°C]');
+title(['Validation, RMSE=' num2str(RMSE_val) '°C']);
 legend('Air temperature','Observed water temperature','Simulated water temperature','location','SouthEast')
 datetick('x','mmm-yy')
 set(gcf,'paperunits','centimeters','papersize',[18 10],'paperposition',[0 0 18 10]);
