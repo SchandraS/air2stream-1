@@ -36,7 +36,6 @@ orange=[230 159 0]/255;
 blue=[0 114 178]/255;
 light_blue=[86 180 233]/255;
 
-question answer
 
 %% 1. Dotty plots
 file=['0_' runmode '_' index '_' IDair '_' IDwat '_c_' dt '.out'];
