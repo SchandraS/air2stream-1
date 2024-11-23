@@ -112,7 +112,7 @@ nse_cal_numer = sum((T_cal(:,5)-T_cal(:,6)).^2, "omitnan");
 nse_cal_denom = sum((T_cal(:,5)- T_cal_obs_mean).^2, "omitnan");
 NSE_cal= 1 - (nse_cal_numer/nse_cal_denom);
 
-%NSE cal
+%NSE val
 T_val_obs_mean = mean(T_val(:,5),"omitnan");
 nse_val_numer = sum((T_val(:,5)-T_val(:,6)).^2, "omitnan");
 nse_val_denom = sum((T_val(:,5)- T_val_obs_mean).^2, "omitnan");
