@@ -96,8 +96,8 @@ T_val(T_val==-999)=NaN;
 date_cal=datenum([T_cal(:,1:3)]);
 date_val=datenum([T_val(:,1:3)]);
 
-RMSE_cal=sqrt(nanmean((T_cal(:,5)-T_cal(:,6)).^2));
-RMSE_val=sqrt(nanmean((T_val(:,5)-T_val(:,6)).^2));
+RMSE_cal=sqrt(mean((T_cal(:,5)-T_cal(:,6)).^2,"omitnan"));
+RMSE_val=sqrt(mean((T_val(:,5)-T_val(:,6)).^2,"omitnan"));
 
 figure
 title(['Validation, RMSE=' num2str(RMSE_cal) '°C'])
